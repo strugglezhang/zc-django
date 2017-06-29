@@ -21,7 +21,13 @@ subject = 'Python SMTP 邮件测试'
 message['Subject'] = Header(subject, 'utf-8')
 
 smtpObj = smtplib.SMTP_SSL()
-smtpObj.connect(mail_host,465)
-smtpObj.login(mail_user, mail_pass)
-smtpObj.sendmail(sender, receivers, message.as_string())
-smtpObj.quit()
+
+try :
+    smtpObj.connect(mail_host,465)
+    smtpObj.login(mail_user, mail_pass)
+    smtpObj.sendmail(sender, receivers, message.as_string())
+    print("发送成功")
+except :
+    print("发送失败")
+finally:
+    smtpObj.quit()
